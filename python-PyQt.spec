@@ -9,6 +9,7 @@
 %define         snap 20030413    
 Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
+Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
 Version:	3.5.0.snap%{snap}
 Release:	0.2
