@@ -1,18 +1,28 @@
+# TODO:
+#  - fix building with qscintilla
+#  - fix why import qt bails out with:
+#    /usr/lib/python2.2/site-packages/libqtcmodule.so: undefined symbol: metaObject__C9QSGIStyle
+
+
 %include	/usr/lib/rpm/macros.python
 %define		module	PyQt
+%define         snap 20030413    
 Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
-Version:	3.5
-Release:	1
+Version:	3.5.0.snap%{snap}
+Release:	0.2
 License:	GPL
 Group:		Libraries/Python
-Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
+# Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
+Source0:        http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{snap}.tar.gz
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
-BuildRequires:	python-devel >= 2.2.1
-BuildRequires:	qt-devel >= 3.0.2
+BuildRequires:	python-devel >= 2.2.2
+BuildRequires:	qt-devel >= 3.1.2
+#BuildRequires:	qscintilla-devel >= 1.49
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip >= 3.5
+BuildRequires:	sip >= 3.5.0.snap20030405
+BuildRequires:	XFree86-OpenGL-devel
 %requires_eq	sip
 %pyrequires_eq	python
 Requires:	OpenGL
@@ -20,6 +30,7 @@ Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _noautoreqdep   libGL.so.1 libGLU.so.1
+%define _prefix /usr/X11R6
 
 %description
 PyQt is a set of Python bindings for the Qt toolkit. The bindings are
@@ -60,7 +71,8 @@ Examples code demonstrating how to use the Python bindings for Qt.
 Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 
 %prep
-%setup -q -n %{module}-x11-gpl-%{version}
+#%%setup -q -n %{module}-x11-gpl-%{version}
+%setup -q -n %{module}-x11-gpl-snapshot-%{snap}
 
 %build
 rm -rf $RPM_BUILD_ROOT
