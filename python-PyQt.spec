@@ -21,7 +21,7 @@ BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 2:3.10.2
 #%%requires_eq	sip
-Requires:	sip >= 2:3.10.1
+Requires:	sip >= 2:3.10.2
 %pyrequires_eq	python
 Requires:	OpenGL
 Requires:	qscintilla >= 1:1.2
@@ -48,7 +48,7 @@ Summary:	Files needed to build other bindings based on Qt
 Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	sip >= 2:3.10.1
+Requires:	sip >= 2:3.10.2
 
 %description devel
 Files needed to build other bindings for C++ classes that inherit from
