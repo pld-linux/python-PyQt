@@ -46,7 +46,7 @@ i metod.
 Summary:	Files needed to build other bindings based on Qt
 Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
 Group:		Development/Languages/Python
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	sip
 
 %description devel
@@ -61,7 +61,7 @@ dziedzicz±cych z dowolnej klasy Qt (np. KDE lub w³asnych).
 Summary:	Examples for PyQt
 Summary(pl):	Przyklady do PyQt
 Group:		Libraries/Python
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description examples
 Examples code demonstrating how to use the Python bindings for Qt.
@@ -74,7 +74,6 @@ Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 %setup -q -n %{module}-x11-gpl-snapshot-%{_snap}
 
 %build
-
 echo 'yes' | python configure.py \
 	-c -j 3 \
 	-b %{_bindir} \
