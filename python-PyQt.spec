@@ -4,20 +4,23 @@ Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
-Version:	3.8.1
-Release:	4
+Version:	3.11
+%define         _snap           20040215
+Release:	0.%{_snap}.1
 License:	GPL
 Group:		Libraries/Python
-Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
-# Source0-md5:	bde37288aea521b9981cc8a193707932
+# Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
+Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{_snap}.tar.gz
+# Source0-md5:	72dd43b9aa5b6652cded7e65309a5c6a
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	qscintilla-devel >= 1:1.2
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip >= 3.8
+BuildRequires:	sip = 3.11
 %requires_eq	sip
+#Requires:	sip >= 3.11
 %pyrequires_eq	python
 Requires:	OpenGL
 Requires:	qscintilla >= 1:1.2
@@ -67,23 +70,18 @@ Examples code demonstrating how to use the Python bindings for Qt.
 Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 
 %prep
-%setup -q -n %{module}-x11-gpl-%{version}
+#%%setup -q -n %{module}-x11-gpl-%{version}
+%setup -q -n %{module}-x11-gpl-snapshot-%{_snap}
 
 %build
-rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
 
-echo 'yes' | python build.py \
+echo 'yes' | python configure.py \
 	-c -j 3 \
-	-q %{_prefix} \
-	-i %{_includedir}/qt \
-	-l qt-mt \
-	-b $RPM_BUILD_ROOT%{_bindir} \
+	-b %{_bindir} \
 	-n %{_includedir}/qt \
 	-o %{_libdir} \
-	-d $RPM_BUILD_ROOT%{py_sitedir} \
-	-s %{py_sitedir} \
-	-r %{_libdir}
+	-d %{py_sitedir} \
+	-v %{sipdir}
 
 %{__make}
 
@@ -98,14 +96,15 @@ install -d $RPM_BUILD_ROOT{%{_examplesdir}/python/%{module},%{sipdir}}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 cp -R examples3/* $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
 
-install sip/* $RPM_BUILD_ROOT%{sipdir}
+cp -R sip/* $RPM_BUILD_ROOT%{sipdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README THANKS doc/%{module}/*
+%doc ChangeLog NEWS README THANKS 
+# doc/%{module}/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{py_sitedir}/lib*.so*
 %{py_sitedir}/*.py[co]
@@ -113,6 +112,9 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{sipdir}/*.sip
+%{sipdir}/*/*.sip
+%dir %{sipdir}/qt*
+# ,qtcanvas,qtext,qtgl,qtnetwork,qtpe,qtsql,qttable,qtui,qtxml
 
 %files examples
 %defattr(644,root,root,755)
