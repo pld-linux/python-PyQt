@@ -29,7 +29,7 @@ Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
-%define         sipdir		%{_datadir}/sip
+%define         _sipfilesdir		%{_datadir}/sip
 
 %description
 PyQt is a set of Python bindings for the Qt toolkit. The bindings are
@@ -81,7 +81,7 @@ echo 'yes' | python configure.py \
 	-n %{_includedir}/qt \
 	-o %{_libdir} \
 	-d %{py_sitedir} \
-	-v %{sipdir}
+	-v %{_sipfilsdir}
 
 %{__make} \
 	CXX="%{__cxx}" \
@@ -90,7 +90,7 @@ echo 'yes' | python configure.py \
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_examplesdir}/python/%{module},%{sipdir}}
+install -d $RPM_BUILD_ROOT{%{_examplesdir}/python/%{module},%{_sipfilesdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -99,7 +99,7 @@ install -d $RPM_BUILD_ROOT{%{_examplesdir}/python/%{module},%{sipdir}}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 cp -R examples3/* $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
 
-cp -R sip/* $RPM_BUILD_ROOT%{sipdir}
+cp -R sip/* $RPM_BUILD_ROOT%{_sipfilesdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -114,9 +114,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{sipdir}/*.sip
-%{sipdir}/*/*.sip
-%dir %{sipdir}/qt*
+%{_sipfilesdir}/*.sip
+%{_sipfilesdir}/*/*.sip
+%dir %{_sipfilesdir}/qt*
 # ,qtcanvas,qtext,qtgl,qtnetwork,qtpe,qtsql,qttable,qtui,qtxml
 
 %files examples
