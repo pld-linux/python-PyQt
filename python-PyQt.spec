@@ -5,7 +5,7 @@ Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
 Version:	3.14
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
@@ -18,11 +18,10 @@ BuildRequires:	qscintilla-devel >= 1:1.5
 BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 2:4.2
-#%%requires_eq	sip
-Requires:	sip >= 2:4.2
 %pyrequires_eq	python-libs
 Requires:	OpenGL
 Requires:	qscintilla >= 1:1.5
+Requires:	sip >= 2:4.2
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
