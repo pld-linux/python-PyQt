@@ -11,16 +11,15 @@ Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	python-devel >= 2.2.1
 BuildRequires:	qt-devel >= 3.0.2
-BuildRequires:  qt-static >= 3.0.2
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 3.5
 %requires_eq	sip
 %pyrequires_eq	python
 Requires:	OpenGL
 Obsoletes:	%{module}
-BuildRoot:	%{tmpdir}/%{name}-x11-gpl-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-#%define         _noautoreqdep   libGL.so.1 libGLU.so.1
+%define         _noautoreqdep   libGL.so.1 libGLU.so.1
 
 %description
 PyQt is a set of Python bindings for the Qt toolkit. The bindings are
@@ -35,24 +34,24 @@ qtsql, qttable i qtxml - zawieraj± one 300 klas i ponad 5 750 funkcji
 i metod.
 
 %package devel
-Summary: Files needed to build other bindings based on Qt
-Summary(pl): Pliki nag³ówkowe %{name}
-Requires: %{name} = %{version}
-Group: Development/Languages/Python
+Summary:	Files needed to build other bindings based on Qt
+Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
+Group:		Development/Languages/Python
+Requires:	%{name} = %{version}
 
 %description devel
-Files needed to build other bindings for C++ classes that inherit from any
-of the Qt classes (e.g. KDE or your own).
+Files needed to build other bindings for C++ classes that inherit from
+any of the Qt classes (e.g. KDE or your own).
 
 %description devel -l pl
-Files needed to build other bindings for C++ classes that inherit from any
-of the Qt classes (e.g. KDE or your own).
+Pliki potrzebne do budowania innych dowi±zañ do klas C++
+dziedzicz±cych z dowolnej klasy Qt (np. KDE lub w³asnych).
 
 %package examples
-Summary: Examples for PyQt
-Summary(pl): Przyklady dla PyQt
-Requires: %{name} = %{version}
-Group: Libraries/Python
+Summary:	Examples for PyQt
+Summary(pl):	Przyklady do PyQt
+Group:		Libraries/Python
+Requires:	%{name} = %{version}
 
 %description examples
 Examples code demonstrating how to use the Python bindings for Qt.
@@ -64,15 +63,17 @@ Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 %setup -q -n %{module}-x11-gpl-%{version}
 
 %build
-
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{py_sitedir}
-install -d $RPM_BUILD_ROOT%{_bindir}
-python build.py -c -q %{_prefix} -i %{_includedir}/qt -l qt-mt -b $RPM_BUILD_ROOT%{_bindir} -n %{_includedir}/qt -o %{_libdir}/qt -q /usr -d $RPM_BUILD_ROOT%{py_sitedir} 
+install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
+
+echo 'yes' | python build.py \
+	-c -q %{_prefix} -i %{_includedir}/qt -l qt-mt \
+	-b $RPM_BUILD_ROOT%{_bindir} -n %{_includedir}/qt -o %{_libdir}/qt -d $RPM_BUILD_ROOT%{py_sitedir}
 
 %{__make}
 
 %install
+rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
 
 %{__make} install \
@@ -81,6 +82,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 cp -R examples3/* $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
