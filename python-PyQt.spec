@@ -5,7 +5,7 @@ Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
 Version:	3.11
-%define         _snap           20040226
+%define		_snap		20040226
 Release:	0.%{_snap}.1
 License:	GPL
 Group:		Libraries/Python
@@ -27,7 +27,7 @@ Requires:	qscintilla >= 1:1.2
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         _noautoreqdep   libGL.so.1 libGLU.so.1
+%define		_noautoreqdep	libGL.so.1 libGLU.so.1
 %define		sipdir		/usr/share/sip
 
 %description
@@ -103,7 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README THANKS 
+%doc ChangeLog NEWS README THANKS
 # doc/%{module}/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{py_sitedir}/lib*.so*
