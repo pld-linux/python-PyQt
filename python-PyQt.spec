@@ -1,12 +1,11 @@
 %define		module	PyQt
+
 Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
 Version:	3.13
-#%%define		_snap		20040226
-#%Release:	0.%{_snap}.2
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
@@ -21,7 +20,7 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 2:4.1.1
 #%%requires_eq	sip
 Requires:	sip >= 2:4.1.1
-%pyrequires_eq	python
+%pyrequires_eq	python-libs
 Requires:	OpenGL
 Requires:	qscintilla >= 1:1.4
 Obsoletes:	%{module}
@@ -71,7 +70,6 @@ Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
-#%%setup -q -n %{module}-x11-gpl-snapshot-%{_snap}
 
 %build
 echo 'yes' | python configure.py \
