@@ -4,12 +4,12 @@ Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
-Version:	3.14
+Version:	3.14.1
 Release:	1
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
-# Source0-md5:	a63f0a9e2bd84a110ecbaf6cdf1d956f
+# Source0-md5:	bf6d939ec77e48a2db7561e7bac61d19
 # Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{_snap}.tar.gz
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
