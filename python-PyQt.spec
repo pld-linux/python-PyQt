@@ -74,7 +74,7 @@ install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
 
 echo 'yes' | python build.py \
 	-c -q %{_prefix} -i %{_includedir}/qt -l qt-mt \
-	-b $RPM_BUILD_ROOT%{_bindir} -n %{_includedir}/qt -o %{_libdir}/qt -d $RPM_BUILD_ROOT%{py_sitedir}
+	-b $RPM_BUILD_ROOT%{_bindir} -n %{_includedir}/qt -o %{_libdir} -d $RPM_BUILD_ROOT%{py_sitedir}
 
 %{__make}
 
