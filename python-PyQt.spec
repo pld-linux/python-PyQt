@@ -1,14 +1,5 @@
 # TODO:
 #  - fix building with qscintilla
-#    
-#    /usr/X11R6/include/qt/qconfig.h must have 
-#      #define QT_NO_STYLE_CDE
-#      #define QT_NO_STYLE_MOTIF
-#      #define QT_NO_STYLE_SGI
-#      #define QT_NO_STYLE_WINDOWS
-#    as in PLD styles are build as plugins
-#    I'm unable to find docs how above change
-#    should be integrated into qt.spec
 
 %include	/usr/lib/rpm/macros.python
 %define		module	PyQt
@@ -27,7 +18,7 @@ Patch0:         %{name}-qt_3_1_2.patch
 Patch1:         %{name}-qt_styles_as_plugins_fix.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	python-devel >= 2.2.2
-BuildRequires:	qt-devel >= 3.1.2
+BuildRequires:	qt-devel >= 3.1.2-2
 #BuildRequires:	qscintilla-devel >= 1.49
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip = 3.5
