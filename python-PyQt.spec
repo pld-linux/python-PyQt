@@ -6,7 +6,7 @@ Summary(ko):	Qt의 파이썬 모듈
 Name:		python-%{module}
 Version:	3.11
 %define		_snap		20040226
-Release:	0.%{_snap}.1
+Release:	0.%{_snap}.2
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
@@ -15,8 +15,8 @@ Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
-BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	qscintilla-devel >= 1:1.2
+BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip = 3.11
 %requires_eq	sip
@@ -82,7 +82,10 @@ echo 'yes' | python configure.py \
 	-d %{py_sitedir} \
 	-v %{sipdir}
 
-%{__make}
+%{__make} \
+	CXX="%{__cxx}" \
+	CXXFLAGS="%{rpmcflags} -fPIC -pipe -w -D_REENTRANT" \
+	LINK="%{__cxx}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
