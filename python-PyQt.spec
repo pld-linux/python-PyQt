@@ -5,7 +5,7 @@ Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
 Version:	3.8.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
@@ -20,10 +20,12 @@ BuildRequires:	sip >= 3.8
 %requires_eq	sip
 %pyrequires_eq	python
 Requires:	OpenGL
+Requires:	qscintilla >= 1:1.2
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _noautoreqdep   libGL.so.1 libGLU.so.1
+%define		sipdir		/usr/share/sip
 
 %description
 PyQt is a set of Python bindings for the Qt toolkit. The bindings are
@@ -42,6 +44,7 @@ Summary:	Files needed to build other bindings based on Qt
 Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}
+Requires:	sip
 
 %description devel
 Files needed to build other bindings for C++ classes that inherit from
@@ -71,14 +74,20 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
 
 echo 'yes' | python build.py \
-	-c -q %{_prefix} -i %{_includedir}/qt -l qt-mt \
-	-b $RPM_BUILD_ROOT%{_bindir} -n %{_includedir}/qt -o %{_libdir} -d $RPM_BUILD_ROOT%{py_sitedir}
+	-c -j 3 \
+	-q %{_prefix} \
+	-i %{_includedir}/qt \
+	-l qt-mt \
+	-b $RPM_BUILD_ROOT%{_bindir} \
+	-n %{_includedir}/qt \
+	-o %{_libdir} \
+	-d $RPM_BUILD_ROOT%{py_sitedir}
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
+install -d $RPM_BUILD_ROOT{%{_examplesdir}/python/%{module},%{sipdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -87,19 +96,21 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 cp -R examples3/* $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
 
+install sip/* $RPM_BUILD_ROOT%{sipdir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc NEWS README THANKS doc/%{module}/*
+%doc ChangeLog NEWS README THANKS doc/%{module}/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{py_sitedir}/lib*.so*
+%{py_sitedir}/*.py[co]
 
 %files devel
 %defattr(644,root,root,755)
-%{py_sitedir}/*.py
-%{py_sitedir}/*.py[co]
+%{sipdir}/*.sip
 
 %files examples
 %defattr(644,root,root,755)
