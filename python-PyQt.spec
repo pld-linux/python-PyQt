@@ -5,21 +5,22 @@ Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
 Version:	3.11
-%define		_snap		20040226
-Release:	0.%{_snap}.2
+#%%define		_snap		20040226
+#%Release:	0.%{_snap}.2
+Release:	1
 License:	GPL
 Group:		Libraries/Python
-# Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
-Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{_snap}.tar.gz
-# Source0-md5:	26aedc0406b58e6e96aaf17ff9512fcd
+Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
+# Source0-md5:	78d0ef29f57d7efd1d87f9a24fc25f1e
+# Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{_snap}.tar.gz
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	qscintilla-devel >= 1:1.2
 BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip = 3.11
-%requires_eq	sip
+BuildRequires:	sip >= 2:3.10.1
+#%%requires_eq	sip
 #Requires:	sip >= 3.11
 %pyrequires_eq	python
 Requires:	OpenGL
@@ -28,7 +29,7 @@ Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
-%define		sipdir		/usr/share/sip
+%define         _sipfilesdir    %{_datadir}/sip
 
 %description
 PyQt is a set of Python bindings for the Qt toolkit. The bindings are
@@ -70,8 +71,8 @@ Examples code demonstrating how to use the Python bindings for Qt.
 Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 
 %prep
-#%%setup -q -n %{module}-x11-gpl-%{version}
-%setup -q -n %{module}-x11-gpl-snapshot-%{_snap}
+%setup -q -n %{module}-x11-gpl-%{version}
+#%%setup -q -n %{module}-x11-gpl-snapshot-%{_snap}
 
 %build
 echo 'yes' | python configure.py \
