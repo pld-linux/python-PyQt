@@ -15,7 +15,7 @@ URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	qscintilla-devel >= 1:1.5
-BuildRequires:	qt-devel >= 3.1.2
+BuildRequires:	qt-devel >= 3.3.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 2:4.2
 %pyrequires_eq	python-libs
