@@ -29,7 +29,7 @@ Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
-%define         _sipfilesdir		%{_datadir}/sip
+%define         _sipfilesdir	%{_datadir}/sip
 
 %description
 PyQt is a set of Python bindings for the Qt toolkit. The bindings are
@@ -106,18 +106,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README THANKS
-# doc/%{module}/*
+%doc ChangeLog NEWS README THANKS doc/PyQt.html
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{py_sitedir}/lib*.so*
+%attr(755,root,root) %{py_sitedir}/*.so*
 %{py_sitedir}/*.py[co]
 
 %files devel
 %defattr(644,root,root,755)
-%{_sipfilesdir}/*.sip
-%{_sipfilesdir}/*/*.sip
+%{_sipfilesdir}/pyqt*.sip
 %dir %{_sipfilesdir}/qt*
-# ,qtcanvas,qtext,qtgl,qtnetwork,qtpe,qtsql,qttable,qtui,qtxml
+%{_sipfilesdir}/qt*/*.sip
 
 %files examples
 %defattr(644,root,root,755)
