@@ -5,7 +5,7 @@ Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
 Version:	3.8.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
