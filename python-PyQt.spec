@@ -6,8 +6,9 @@
 #      #define QT_NO_STYLE_MOTIF
 #      #define QT_NO_STYLE_SGI
 #      #define QT_NO_STYLE_WINDOWS
-#    as in PLD styles are build as modules
-
+#    as in PLD styles are build as plugins
+#    I'm unable to find docs how above change
+#    should be integrated into qt.spec
 
 %include	/usr/lib/rpm/macros.python
 %define		module	PyQt
@@ -17,12 +18,13 @@ Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
 #Version:	3.5.0.snap%{snap}
 Version:	3.5
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
 # Source0:        http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{snap}.tar.gz
 Patch0:         %{name}-qt_3_1_2.patch
+Patch1:         %{name}-qt_styles_as_plugins_fix.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	qt-devel >= 3.1.2
@@ -85,6 +87,7 @@ Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 %setup -q -n %{module}-x11-gpl-%{version}
 #%%setup -q -n %{module}-x11-gpl-snapshot-%{snap}
 %patch0 -p1
+%patch1 -p1
 
 %build
 
