@@ -1,0 +1,12 @@
+diff -ru PyQt-3.1.orig/qt/sipqtQStringList.cpp PyQt-3.1/qt/sipqtQStringList.cpp
+--- PyQt-3.1.orig/qt/sipqtQStringList.cpp	Fri Mar 22 10:55:15 2002
++++ PyQt-3.1/qt/sipqtQStringList.cpp	Thu Mar 28 23:39:35 2002
+@@ -550,7 +550,7 @@
+ 		QStringList *ptr;
+ 		int idx;
+ 
+-		if (sipParseArgs(&sipArgsParsed,sipArgs,"ni",&sipSelfObj,sipClass_QStringList,&ptr))
++		if (sipParseArgs(&sipArgsParsed,sipArgs,"ni",&sipSelfObj,sipClass_QStringList,&ptr,&idx))
+ 		{
+ 			if (idx < 0 || idx >= ptr -> count())
+ 			{
