@@ -1,28 +1,23 @@
-# TODO:
-#  - fix building with qscintilla
 
 %include	/usr/lib/rpm/macros.python
 %define		module	PyQt
-#%%define         snap 20030413    
 Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
-#Version:	3.5.0.snap%{snap}
-Version:	3.5
-Release:	3
+Version:	3.6
+Release:	1
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
 # Source0:        http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{snap}.tar.gz
-Patch0:         %{name}-qt_3_1_2.patch
-Patch1:         %{name}-qt_styles_as_plugins_fix.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	qt-devel >= 3.1.2-2
-#BuildRequires:	qscintilla-devel >= 1.49
+BuildRequires:	qscintilla-devel >= 1.53
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip = 3.5
+BuildRequires:	sip = %{version}
 BuildRequires:	XFree86-OpenGL-devel
+
 # I'm not sure if sip is really needed in runtime.
 # %%requires_eq	sip
 %pyrequires_eq	python
@@ -73,12 +68,9 @@ Examples code demonstrating how to use the Python bindings for Qt.
 %description examples -l pl
 Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 
-
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
 #%%setup -q -n %{module}-x11-gpl-snapshot-%{snap}
-%patch0 -p1
-%patch1 -p1
 
 %build
 
