@@ -5,18 +5,18 @@ Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
-Version:	3.7
-Release:	3
+Version:	3.8
+Release:	1
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
-# Source0-md5:	f782882fc770e6b1dc97054fe73fafee
+# Source0-md5:	3a6da6ce9ae84183d59281980366990f
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	qt-devel >= 3.1.2
-BuildRequires:	qscintilla-devel >= 1.53
+BuildRequires:	qscintilla-devel >= 1.2
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip >= 3.7
+BuildRequires:	sip >= 3.8
 BuildRequires:	XFree86-OpenGL-devel
 %requires_eq	sip
 %pyrequires_eq	python
