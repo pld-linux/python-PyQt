@@ -15,7 +15,7 @@ Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
-BuildRequires:	qscintilla-devel >= 1:1.2
+BuildRequires:	qscintilla-devel >= 1:1.4
 BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 2:4.1.1
