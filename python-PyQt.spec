@@ -64,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.gz doc/%{module}/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{py_sitedir}/lib*.so
-%attr(755,root,root) %{py_sitedir}/lib*.la
+%{py_sitedir}/lib*.la
 %{py_sitedir}/eric
 %{py_sitedir}/*.py[co]
 %{_datadir}/sip/qt
