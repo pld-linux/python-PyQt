@@ -5,13 +5,13 @@ Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
 Version:	3.11
-%define         _snap           20040215
+%define         _snap           20040226
 Release:	0.%{_snap}.1
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
 Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{_snap}.tar.gz
-# Source0-md5:	72dd43b9aa5b6652cded7e65309a5c6a
+# Source0-md5:	26aedc0406b58e6e96aaf17ff9512fcd
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
