@@ -4,25 +4,25 @@ Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
-Version:	3.13
-Release:	4
-License:	GPL
+Version:	3.14
+Release:	0.1
+License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
-# Source0-md5:	a4145b39742a4d9df9b6bf06495f75f5
+# Source0-md5:	a63f0a9e2bd84a110ecbaf6cdf1d956f
 # Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{_snap}.tar.gz
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
-BuildRequires:	qscintilla-devel >= 1:1.4
+BuildRequires:	qscintilla-devel >= 1:1.5
 BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip >= 2:4.1.1
+BuildRequires:	sip >= 2:4.2
 #%%requires_eq	sip
-Requires:	sip >= 2:4.1.1
+Requires:	sip >= 2:4.2
 %pyrequires_eq	python-libs
 Requires:	OpenGL
-Requires:	qscintilla >= 1:1.4
+Requires:	qscintilla >= 1:1.5
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,7 +46,7 @@ Summary:	Files needed to build other bindings based on Qt
 Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	sip >= 2:3.10.2
+Requires:	sip >= 2:4.2
 
 %description devel
 Files needed to build other bindings for C++ classes that inherit from
