@@ -1,4 +1,3 @@
-
 %include	/usr/lib/rpm/macros.python
 %define		module	PyQt
 Summary:	Python bindings for the Qt toolkit
@@ -12,12 +11,12 @@ Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
 # Source0-md5:	3a6da6ce9ae84183d59281980366990f
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
+BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	qscintilla-devel >= 1:1.2
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 3.8
-BuildRequires:	XFree86-OpenGL-devel
 %requires_eq	sip
 %pyrequires_eq	python
 Requires:	OpenGL
@@ -66,7 +65,6 @@ Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
-
 
 %build
 rm -rf $RPM_BUILD_ROOT
