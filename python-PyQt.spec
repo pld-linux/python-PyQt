@@ -1,7 +1,14 @@
 # TODO:
 #  - fix building with qscintilla
-#  - fix why import qt bails out with:
+#  - problem with style SGI in Qt must be solved first
 #    /usr/lib/python2.2/site-packages/libqtcmodule.so: undefined symbol: metaObject__C9QSGIStyle
+#    (hint at http://mail.python.org/pipermail/python-list/2002-September/124446.html)
+#    after adding: ( #define QT_NO_STYLE_SGI is not enough)
+#      #define QT_NO_STYLE_CDE
+#      #define QT_NO_STYLE_MOTIF
+#      #define QT_NO_STYLE_SGI
+#      #define QT_NO_STYLE_WINDOWS
+#    /usr/X11R6/include/qt/qconfig.h package builds and allows import qt module 
 
 
 %include	/usr/lib/rpm/macros.python
@@ -11,7 +18,7 @@ Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
 Version:	3.5.0.snap%{snap}
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
@@ -23,7 +30,8 @@ BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 3.5.0.snap20030405
 BuildRequires:	XFree86-OpenGL-devel
-%requires_eq	sip
+# I'm not sure if sip is really needed in runtime.
+# %%requires_eq	sip
 %pyrequires_eq	python
 Requires:	OpenGL
 Obsoletes:	%{module}
@@ -31,6 +39,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _noautoreqdep   libGL.so.1 libGLU.so.1
 %define _prefix /usr/X11R6
+%define          _sipfilesdir         /usr/share/sip
 
 %description
 PyQt is a set of Python bindings for the Qt toolkit. The bindings are
@@ -49,13 +58,14 @@ Summary:	Files needed to build other bindings based on Qt
 Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}
+%requires_eq	sip
 
 %description devel
-Files needed to build other bindings for C++ classes that inherit from
+Sip files needed to build other bindings for C++ classes that inherit from
 any of the Qt classes (e.g. KDE or your own).
 
 %description devel -l pl
-Pliki potrzebne do budowania innych dowi±zañ do klas C++
+Pliki sip potrzebne do budowania innych dowi±zañ do klas C++
 dziedzicz±cych z dowolnej klasy Qt (np. KDE lub w³asnych).
 
 %package examples
@@ -70,11 +80,13 @@ Examples code demonstrating how to use the Python bindings for Qt.
 %description examples -l pl
 Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 
+
 %prep
 #%%setup -q -n %{module}-x11-gpl-%{version}
 %setup -q -n %{module}-x11-gpl-snapshot-%{snap}
 
 %build
+
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
 
@@ -95,6 +107,9 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 cp -R examples3/* $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
 
+install -d $RPM_BUILD_ROOT%{_sipfilesdir}
+cp sip/* $RPM_BUILD_ROOT%{_sipfilesdir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -103,11 +118,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc NEWS README THANKS doc/%{module}/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{py_sitedir}/lib*.so*
+%{py_sitedir}/*.py[co]
 
 %files devel
 %defattr(644,root,root,755)
-%{py_sitedir}/*.py
-%{py_sitedir}/*.py[co]
+%{_sipfilesdir}/*
+
 
 %files examples
 %defattr(644,root,root,755)
