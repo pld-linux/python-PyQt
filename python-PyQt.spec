@@ -81,7 +81,7 @@ echo 'yes' | python configure.py \
 	-n %{_includedir}/qt \
 	-o %{_libdir} \
 	-d %{py_sitedir} \
-	-v %{_sipfilsdir}
+	-v %{_sipfilesdir}
 
 %{__make} \
 	CXX="%{__cxx}" \
