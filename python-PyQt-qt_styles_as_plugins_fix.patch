@@ -1,0 +1,22 @@
+diff -urN PyQt-x11-gpl-3.5/sip/qcommonstyle.sip PyQt-x11-gpl-3.5.fixed/sip/qcommonstyle.sip
+--- PyQt-x11-gpl-3.5/sip/qcommonstyle.sip	Wed Dec 11 14:55:18 2002
++++ PyQt-x11-gpl-3.5.fixed/sip/qcommonstyle.sip	Thu Apr 17 12:31:06 2003
+@@ -49,7 +49,10 @@
+  
+  
+ %If (Qt_2_00 -)
+-%If (Qt_STYLE_WINDOWS || Qt_STYLE_MOTIF)
++// %If (Qt_STYLE_WINDOWS || Qt_STYLE_MOTIF) 
++	// It's not quite right. We have styles but as plugins
++	// so we must have NO_STYLE in qconfig.h but
++	// QCommonStyle is needed by PyKDE
+ 
+ class QCommonStyle : QStyle
+ {
+@@ -172,5 +175,5 @@
+ %End
+ };
+ 
+-%End
++// %End // (Qt_STYLE_WINDOWS || Qt_STYLE_MOTIF)
+ %End
