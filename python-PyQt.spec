@@ -1,11 +1,12 @@
-
+# TODO:
+#   - Fix linking with qscintilla. Still qtext module does not build.
 %include	/usr/lib/rpm/macros.python
 %define		module	PyQt
 Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
 Version:	3.7
-Release:	1
+Release:	1.1
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
@@ -14,15 +15,14 @@ Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	qt-devel >= 3.1.2-2
-BuildRequires:	qscintilla-devel >= 1.53
+BuildRequires:	qscintilla-devel > 1.53-1
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip = %{version}
 BuildRequires:	XFree86-OpenGL-devel
 
-# I'm not sure if sip is really needed in runtime.
-# %%requires_eq	sip
 %pyrequires_eq	python
 Requires:	OpenGL
+Requires:	qscintilla > 1.53-1
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -71,17 +71,14 @@ Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
-#%%setup -q -n %{module}-x11-gpl-snapshot-%{snap}
 
 %build
-
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
 
 echo 'yes' | python build.py \
-	-c -q %{_prefix} -i %{_includedir}/qt -l qt-mt \
-	-b $RPM_BUILD_ROOT%{_bindir} -n %{_includedir}/qt -o %{_libdir}/qt -d $RPM_BUILD_ROOT%{py_sitedir}
-
+        -c -q %{_prefix} -i %{_includedir}/qt -l qt-mt \
+        -b $RPM_BUILD_ROOT%{_bindir} -n %{_includedir}/qt -o %{_libdir} -d $RPM_BUILD_ROOT%{py_sitedir}
 %{__make}
 
 %install
@@ -89,7 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+        DESTDIR=$RPM_BUILD_ROOT
 
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
