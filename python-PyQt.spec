@@ -7,16 +7,18 @@ Version:	3.1
 Release:	1
 License:	MIT
 Group:		Libraries/Python
-Source0:	http://www.riverbankcomputing.co.uk/download/PyQt/PyQt-%{version}-Qt-3.0.2.tar.gz
-Patch0:		http://www.riverbankcomputing.co.uk/download/PyQt/PyQt-3.1-patch.1
+# current package name is PyQt-x11-gpl-%{version}.tar.gz,
+# only version 3.5 available at the moment
+Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-%{version}-Qt-3.0.2.tar.gz
+Patch0:		PyQt-3.1-patch.1
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
-Requires:	OpenGL
 BuildRequires:	python-devel >= 2.2.1
 BuildRequires:	qt-devel >= 3.0.2
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 3.1
 %requires_eq	sip
 %pyrequires_eq	python
+Requires:	OpenGL
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
