@@ -1,34 +1,34 @@
 # TODO:
 #  - fix building with qscintilla
-#  - problem with style SGI in Qt must be solved first
-#    /usr/lib/python2.2/site-packages/libqtcmodule.so: undefined symbol: metaObject__C9QSGIStyle
-#    (hint at http://mail.python.org/pipermail/python-list/2002-September/124446.html)
-#    after adding: ( #define QT_NO_STYLE_SGI is not enough)
+#    
+#    /usr/X11R6/include/qt/qconfig.h must have 
 #      #define QT_NO_STYLE_CDE
 #      #define QT_NO_STYLE_MOTIF
 #      #define QT_NO_STYLE_SGI
 #      #define QT_NO_STYLE_WINDOWS
-#    /usr/X11R6/include/qt/qconfig.h package builds and allows import qt module 
+#    as in PLD styles are build as modules
 
 
 %include	/usr/lib/rpm/macros.python
 %define		module	PyQt
-%define         snap 20030413    
+#%%define         snap 20030413    
 Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
-Version:	3.5.0.snap%{snap}
-Release:	0.3
+#Version:	3.5.0.snap%{snap}
+Version:	3.5
+Release:	2
 License:	GPL
 Group:		Libraries/Python
-# Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
-Source0:        http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{snap}.tar.gz
+Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
+# Source0:        http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{snap}.tar.gz
+Patch0:         %{name}-qt_3_1_2.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	qt-devel >= 3.1.2
 #BuildRequires:	qscintilla-devel >= 1.49
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip >= 3.5.0.snap20030405
+BuildRequires:	sip = 3.5
 BuildRequires:	XFree86-OpenGL-devel
 # I'm not sure if sip is really needed in runtime.
 # %%requires_eq	sip
@@ -82,8 +82,9 @@ Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 
 
 %prep
-#%%setup -q -n %{module}-x11-gpl-%{version}
-%setup -q -n %{module}-x11-gpl-snapshot-%{snap}
+%setup -q -n %{module}-x11-gpl-%{version}
+#%%setup -q -n %{module}-x11-gpl-snapshot-%{snap}
+%patch0 -p1
 
 %build
 
