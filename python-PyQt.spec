@@ -5,7 +5,7 @@ Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
 Version:	3.8.1
-Release:	3
+Release:	4
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
@@ -81,7 +81,9 @@ echo 'yes' | python build.py \
 	-b $RPM_BUILD_ROOT%{_bindir} \
 	-n %{_includedir}/qt \
 	-o %{_libdir} \
-	-d $RPM_BUILD_ROOT%{py_sitedir}
+	-d $RPM_BUILD_ROOT%{py_sitedir} \
+	-s %{py_sitedir} \
+	-r %{_libdir}
 
 %{__make}
 
