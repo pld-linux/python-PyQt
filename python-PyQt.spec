@@ -9,6 +9,7 @@ Release:	1
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
+# Source0-md5:	bedea8fb28940471c86699e6656452e5
 # Source0:        http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{snap}.tar.gz
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	python-devel >= 2.2.2
