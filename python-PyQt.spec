@@ -6,7 +6,7 @@ Name:		python-%{module}
 Version:	3.13
 #%%define		_snap		20040226
 #%Release:	0.%{_snap}.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
@@ -18,12 +18,12 @@ BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	qscintilla-devel >= 1:1.2
 BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip >= 2:3.10.2
+BuildRequires:	sip >= 2:4.1.1
 #%%requires_eq	sip
-Requires:	sip >= 2:3.10.2
+Requires:	sip >= 2:4.1.1
 %pyrequires_eq	python
 Requires:	OpenGL
-Requires:	qscintilla >= 1:1.2
+Requires:	qscintilla >= 1:1.4
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
