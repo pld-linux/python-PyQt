@@ -1,6 +1,6 @@
 
 %include	/usr/lib/rpm/macros.python
-%define		module	PyQt 
+%define		module	PyQt
 Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
