@@ -21,7 +21,7 @@ BuildRequires:	qt-devel >= 3.1.2
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 2:3.10.1
 #%%requires_eq	sip
-#Requires:	sip >= 3.11
+Requires:	sip >= 2:3.10.1
 %pyrequires_eq	python
 Requires:	OpenGL
 Requires:	qscintilla >= 1:1.2
@@ -29,7 +29,7 @@ Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
-%define         _sipfilesdir    %{_datadir}/sip
+%define         sipdir		%{_datadir}/sip
 
 %description
 PyQt is a set of Python bindings for the Qt toolkit. The bindings are
@@ -48,7 +48,7 @@ Summary:	Files needed to build other bindings based on Qt
 Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	sip
+Requires:	sip >= 2:3.10.1
 
 %description devel
 Files needed to build other bindings for C++ classes that inherit from
