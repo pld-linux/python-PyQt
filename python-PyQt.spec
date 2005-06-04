@@ -17,6 +17,7 @@ BuildRequires:	python >= 2.2.2
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	python-modules >= 2.2.2
 BuildRequires:	qscintilla-devel >= 1:1.5
+BuildRequires:	qt-designer-libs >= 3.3.0
 BuildRequires:	qt-devel >= 3.3.0
 BuildRequires:	sip >= 2:4.2
 %pyrequires_eq	python-libs
@@ -31,15 +32,15 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 PyQt is a set of Python bindings for the Qt toolkit. The bindings are
-implemented as a set of Python modules: qt, qtcanvas, qtgl, qtnetwork,
-qtsql, qttable and qtxml, and contains 300 classes and over 5,750
-functions and methods.
+implemented as a set of Python modules: qt, qtcanvas, qtext, qtgl,
+qtnetwork, qtsql, qttable, qtui and qtxml, and contains 300 classes
+and over 5,750 functions and methods.
 
 %description -l pl
 PyQT to zbiór dowi±zañ do Qt dla Pythona. Dowi±zania zosta³y
-zaimplementowane jako modu³y Pythona: qt, qtcanvas, qtgl, qtnetwork,
-qtsql, qttable i qtxml - zawieraj± one 300 klas i ponad 5 750 funkcji
-i metod.
+zaimplementowane jako modu³y Pythona: qt, qtcanvas, qtext, qtgl,
+qtnetwork, qtsql, qttable, qtui i qtxml - zawieraj± one 300 klas
+i ponad 5 750 funkcji i metod.
 
 %package devel
 Summary:	Files needed to build other bindings based on Qt
