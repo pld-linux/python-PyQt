@@ -1,29 +1,29 @@
 %define		module	PyQt
+%define		sipver	2:4.3
 
 Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Name:		python-%{module}
-Version:	3.14.1
+Version:	3.15
 Release:	1
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
-# Source0-md5:	bf6d939ec77e48a2db7561e7bac61d19
+# Source0-md5:	8e70fac4f403fb759b537008170ff446
 # Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{_snap}.tar.gz
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
-BuildRequires:	python >= 2.2.2
 BuildRequires:	python-devel >= 2.2.2
-BuildRequires:	python-modules >= 2.2.2
 BuildRequires:	qscintilla-devel >= 1:1.5
 BuildRequires:	qt-designer-libs >= 3.3.0
 BuildRequires:	qt-devel >= 3.3.0
-BuildRequires:	sip >= 2:4.2
+BuildRequires:	rpm-pythonprov
+BuildRequires:	sip >= %{sipver}
 %pyrequires_eq	python-libs
 Requires:	OpenGL
 Requires:	qscintilla >= 1:1.5
-Requires:	sip >= 2:4.2
+Requires:	sip >= %{sipver}
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,7 +47,7 @@ Summary:	Files needed to build other bindings based on Qt
 Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	sip >= 2:4.2
+Requires:	sip >= %{sipver}
 
 %description devel
 Files needed to build other bindings for C++ classes that inherit from
