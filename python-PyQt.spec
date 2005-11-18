@@ -11,7 +11,7 @@ License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
 # Source0-md5:	835d49f219b3c0b7f60bf6b2b47c5320
-# Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{_snap}.tar.gz
+Patch0:		%{name}-pyuic_accel.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
@@ -71,6 +71,7 @@ Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
+%patch0 -p1
 
 %build
 echo 'yes' | python configure.py \
