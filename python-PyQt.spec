@@ -5,8 +5,8 @@
 %define		module	PyQt
 %define		sipver	2:4.3
 Summary:	Python bindings for the Qt toolkit
-Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
+Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
 Version:	3.15.1
 Release:	1
@@ -22,6 +22,7 @@ BuildRequires:	qscintilla-devel >= 1:1.5
 BuildRequires:	qt-designer-libs >= 3.3.0
 BuildRequires:	qt-devel >= 3.3.0
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.219
 BuildRequires:	sip >= %{sipver}
 %pyrequires_eq	python-libs
 Requires:	OpenGL
@@ -42,8 +43,8 @@ and over 5,750 functions and methods.
 %description -l pl
 PyQT to zbiór dowi±zañ do Qt dla Pythona. Dowi±zania zosta³y
 zaimplementowane jako modu³y Pythona: qt, qtcanvas, qtext, qtgl,
-qtnetwork, qtsql, qttable, qtui i qtxml - zawieraj± one 300 klas
-i ponad 5 750 funkcji i metod.
+qtnetwork, qtsql, qttable, qtui i qtxml - zawieraj± one 300 klas i
+ponad 5 750 funkcji i metod.
 
 %package devel
 Summary:	Files needed to build other bindings based on Qt
@@ -102,6 +103,8 @@ install -d $RPM_BUILD_ROOT{%{_examplesdir}/%{name}-%{version},%{_sipfilesdir}}
 cp -R examples3/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 cp -R sip/* $RPM_BUILD_ROOT%{_sipfilesdir}
+
+%py_postclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
