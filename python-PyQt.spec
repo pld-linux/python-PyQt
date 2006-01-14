@@ -1,6 +1,9 @@
+# TODO
+# - python-devel-2.4.2-3 marks sip-4.2.1-1 (req python-devel >= 2.2)
+#    sip-4.2.1-1 marks python-PyQt-3.14.1-1 (req sip >= 2:4.2)
+#      python-PyQt-3.14.1-1 marks amarok-scripts-1.3.6-1 (req python-PyQt)
 %define		module	PyQt
 %define		sipver	2:4.3
-
 Summary:	Python bindings for the Qt toolkit
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
