@@ -92,14 +92,14 @@ echo 'yes' | python configure.py \
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_examplesdir}/python/%{module},%{_sipfilesdir}}
+install -d $RPM_BUILD_ROOT{%{_examplesdir}/%{name}-%{version},%{_sipfilesdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
-cp -R examples3/* $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
+cp -R examples3/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 cp -R sip/* $RPM_BUILD_ROOT%{_sipfilesdir}
 
@@ -121,4 +121,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files examples
 %defattr(644,root,root,755)
-%{_examplesdir}/python/%{module}
+%{_examplesdir}/*
