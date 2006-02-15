@@ -14,16 +14,16 @@ Patch0:		%{name}-pyuic_accel.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
+BuildRequires:	python-sip-devel >= %{sipver}
 BuildRequires:	qscintilla-devel >= 1:1.5
 BuildRequires:	qt-designer-libs >= 3.3.0
 BuildRequires:	qt-devel >= 3.3.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
-BuildRequires:	sip-devel >= %{sipver}
 %pyrequires_eq	python-libs
 Requires:	OpenGL
-Requires:	qscintilla >= 1:1.5
 Requires:	python-sip >= %{sipver}
+Requires:	qscintilla >= 1:1.5
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,7 +47,7 @@ Summary:	Files needed to build other bindings based on Qt
 Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	sip-devel >= %{sipver}
+Requires:	python-sip-devel >= %{sipver}
 
 %description devel
 Files needed to build other bindings for C++ classes that inherit from
