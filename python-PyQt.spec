@@ -1,7 +1,3 @@
-# TODO
-# - python-devel-2.4.2-3 marks sip-4.2.1-1 (req python-devel >= 2.2)
-#    sip-4.2.1-1 marks python-PyQt-3.14.1-1 (req sip >= 2:4.2)
-#      python-PyQt-3.14.1-1 marks amarok-scripts-1.3.6-1 (req python-PyQt)
 %define		module	PyQt
 %define		sipver	2:4.3
 Summary:	Python bindings for the Qt toolkit
@@ -9,7 +5,7 @@ Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
 Version:	3.15.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
@@ -23,11 +19,11 @@ BuildRequires:	qt-designer-libs >= 3.3.0
 BuildRequires:	qt-devel >= 3.3.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
-BuildRequires:	sip >= %{sipver}
+BuildRequires:	sip-devel >= %{sipver}
 %pyrequires_eq	python-libs
 Requires:	OpenGL
 Requires:	qscintilla >= 1:1.5
-Requires:	sip >= %{sipver}
+Requires:	python-sip >= %{sipver}
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -51,7 +47,7 @@ Summary:	Files needed to build other bindings based on Qt
 Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	sip >= %{sipver}
+Requires:	sip-devel >= %{sipver}
 
 %description devel
 Files needed to build other bindings for C++ classes that inherit from
@@ -81,9 +77,9 @@ Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
 echo 'yes' | python configure.py \
 	-c -j 3 \
 	-b %{_bindir} \
+	-d %{py_sitedir} \
 	-n %{_includedir}/qt \
 	-o %{_libdir} \
-	-d %{py_sitedir} \
 	-v %{_sipfilesdir}
 
 %{__make} \
