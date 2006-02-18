@@ -37,7 +37,7 @@ qtnetwork, qtsql, qttable, qtui and qtxml, and contains 300 classes
 and over 5,750 functions and methods.
 
 %description -l pl
-PyQT to zbiór dowi±zañ do Qt dla Pythona. Dowi±zania zosta³y
+PyQt to zbiór dowi±zañ do Qt dla Pythona. Dowi±zania zosta³y
 zaimplementowane jako modu³y Pythona: qt, qtcanvas, qtext, qtgl,
 qtnetwork, qtsql, qttable, qtui i qtxml - zawieraj± one 300 klas i
 ponad 5 750 funkcji i metod.
@@ -67,7 +67,7 @@ Requires:	%{name} = %{version}-%{release}
 Examples code demonstrating how to use the Python bindings for Qt.
 
 %description examples -l pl
-Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
+Przykladowy kod demonstruj±cy jak u¿ywaæ PyQt.
 
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
