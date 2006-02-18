@@ -1,16 +1,17 @@
 %define		module	PyQt
-%define		sipver	2:4.3
+%define		sipver	2:4.4
+%define		snap	20060214
+
 Summary:	Python bindings for the Qt toolkit
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
-Version:	3.15.1
-Release:	2
+Version:	3.16.0
+Release:	0.%{snap}.1
 License:	GPL v2
 Group:		Libraries/Python
-Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
-# Source0-md5:	835d49f219b3c0b7f60bf6b2b47c5320
-Patch0:		%{name}-pyuic_accel.patch
+Source0:	http://www.riverbankcomputing.com/Downloads/Snapshots/PyQt3/%{module}-x11-gpl-snapshot-%{snap}.tar.gz
+# Source0-md5:	d92955f9297ba019e23d4c840a9e866f
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
@@ -37,7 +38,7 @@ qtnetwork, qtsql, qttable, qtui and qtxml, and contains 300 classes
 and over 5,750 functions and methods.
 
 %description -l pl
-PyQT to zbiór dowi±zañ do Qt dla Pythona. Dowi±zania zosta³y
+PyQt to zbiór dowi±zañ do Qt dla Pythona. Dowi±zania zosta³y
 zaimplementowane jako modu³y Pythona: qt, qtcanvas, qtext, qtgl,
 qtnetwork, qtsql, qttable, qtui i qtxml - zawieraj± one 300 klas i
 ponad 5 750 funkcji i metod.
@@ -67,13 +68,13 @@ Requires:	%{name} = %{version}-%{release}
 Examples code demonstrating how to use the Python bindings for Qt.
 
 %description examples -l pl
-Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
+Przykladowy kod demonstruj±cy jak u¿ywaæ PyQt.
 
 %prep
-%setup -q -n %{module}-x11-gpl-%{version}
-%patch0 -p1
+%setup -q -n %{module}-x11-gpl-snapshot-%{snap}
 
 %build
+export QMAKESPEC="%{_datadir}/qt/mkspecs/default"
 echo 'yes' | python configure.py \
 	-c -j 3 \
 	-b %{_bindir} \
