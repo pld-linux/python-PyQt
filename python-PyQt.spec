@@ -11,7 +11,7 @@ Release:	0.%{snap}.1
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.riverbankcomputing.com/Downloads/Snapshots/PyQt3/%{module}-x11-gpl-snapshot-%{snap}.tar.gz
-# Source0-md5:	d92955f9297ba019e23d4c840a9e866f
+# Source0-md5:	d6d592e92e4355287c364d894e28cce8
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
