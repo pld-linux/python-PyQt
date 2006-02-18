@@ -59,7 +59,7 @@ dziedzicz±cych z dowolnej klasy Qt (np. KDE lub w³asnych).
 
 %package examples
 Summary:	Examples for PyQt
-Summary(pl):	Przyklady do PyQt
+Summary(pl):	Przyk³ady do PyQt
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 
@@ -67,7 +67,7 @@ Requires:	%{name} = %{version}-%{release}
 Examples code demonstrating how to use the Python bindings for Qt.
 
 %description examples -l pl
-Przykladowy kod demonstruj±cy jak u¿ywaæ PyQt.
+Przyk³adowy kod demonstruj±cy jak u¿ywaæ PyQt.
 
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
