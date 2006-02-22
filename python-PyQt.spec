@@ -1,6 +1,6 @@
 %define		module	PyQt
-%define		sipver	2:4.4
-%define		snap	20060214
+%define		snap	20060221
+%define		sipver	2:4.4-0.%{snap}
 
 Summary:	Python bindings for the Qt toolkit
 Summary(ko):	Qt의 파이썬 모듈
@@ -11,11 +11,12 @@ Release:	0.%{snap}.1
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.riverbankcomputing.com/Downloads/Snapshots/PyQt3/%{module}-x11-gpl-snapshot-%{snap}.tar.gz
-# Source0-md5:	d6d592e92e4355287c364d894e28cce8
+# Source0-md5:	6949307d67078c30ba467e67452b1e5f
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	python-sip-devel >= %{sipver}
+BuildRequires:	qmake
 BuildRequires:	qscintilla-devel >= 1:1.5
 BuildRequires:	qt-designer-libs >= 3.3.0
 BuildRequires:	qt-devel >= 3.3.0
@@ -81,12 +82,10 @@ echo 'yes' | python configure.py \
 	-d %{py_sitedir} \
 	-n %{_includedir}/qt \
 	-o %{_libdir} \
+	-q %{_prefix} \
 	-v %{_sipfilesdir}
 
-%{__make} \
-	CXX="%{__cxx}" \
-	CXXFLAGS="%{rpmcflags} -fPIC -pipe -w -D_REENTRANT" \
-	LINK="%{__cxx}"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
