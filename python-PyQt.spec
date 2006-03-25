@@ -1,17 +1,19 @@
 %define		module	PyQt
-%define		snap	20060221
-%define		sipver	2:4.4-0.%{snap}
+#%%define		snap	20060221
+%define		sipver	2:4.4
 
 Summary:	Python bindings for the Qt toolkit
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
-Version:	3.16.0
-Release:	0.%{snap}.1
+Version:	3.16
+#Release:	0.%{snap}.1
+Release:	1
 License:	GPL v2
 Group:		Libraries/Python
-Source0:	http://www.riverbankcomputing.com/Downloads/Snapshots/PyQt3/%{module}-x11-gpl-snapshot-%{snap}.tar.gz
-# Source0-md5:	6949307d67078c30ba467e67452b1e5f
+# Source0:	http://www.riverbankcomputing.com/Downloads/Snapshots/PyQt3/%{module}-x11-gpl-snapshot-%{snap}.tar.gz
+Source0:	http://www.riverbankcomputing.com/Downloads/PyQt3/GPL/PyQt-x11-gpl-%{version}.tar.gz
+# Source0-md5:	5f7a32a15bf8afe17c0d0a0cc46de690
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
@@ -72,7 +74,8 @@ Examples code demonstrating how to use the Python bindings for Qt.
 Przykladowy kod demonstruj±cy jak u¿ywaæ PyQt.
 
 %prep
-%setup -q -n %{module}-x11-gpl-snapshot-%{snap}
+#%%setup -q -n %{module}-x11-gpl-snapshot-%{snap}
+%setup -q -n %{module}-x11-gpl-%{version}
 
 %build
 export QMAKESPEC="%{_datadir}/qt/mkspecs/default"
