@@ -1,5 +1,5 @@
 %define		module	PyQt
-%define		sipver	2:4.4
+%define		sipver	2:4.4.5
 Summary:	Python bindings for the Qt toolkit
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
