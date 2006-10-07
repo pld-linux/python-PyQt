@@ -1,0 +1,54 @@
+diff -uNr PyQt-x11-gpl-3.16/sip.orig/qt/qdir.sip PyQt-x11-gpl-3.16/sip/qt/qdir.sip
+--- PyQt-x11-gpl-3.16/sip.orig/qt/qdir.sip	2006-03-25 01:09:08.000000000 +0100
++++ PyQt-x11-gpl-3.16/sip/qt/qdir.sip	2006-10-07 09:55:46.000000000 +0200
+@@ -256,7 +256,7 @@
+ 
+ 	QStringList operator[](SIP_PYSLICE) const;
+ %MethodCode
+-		int len, start, stop, step, slicelength;
++		Py_ssize_t len, start, stop, step, slicelength;
+ 
+ 		Py_BEGIN_ALLOW_THREADS
+ 		len = sipCpp -> count();
+diff -uNr PyQt-x11-gpl-3.16/sip.orig/qt/qstringlist.sip PyQt-x11-gpl-3.16/sip/qt/qstringlist.sip
+--- PyQt-x11-gpl-3.16/sip.orig/qt/qstringlist.sip	2006-03-25 01:09:08.000000000 +0100
++++ PyQt-x11-gpl-3.16/sip/qt/qstringlist.sip	2006-10-07 09:51:59.000000000 +0200
+@@ -111,7 +111,7 @@
+ 
+ 	void __setitem__(SIP_PYSLICE,const QStringList &);
+ %MethodCode
+-		int len, start, stop, step, slicelength;
++		Py_ssize_t len, start, stop, step, slicelength;
+ 
+ 		len = sipCpp -> count();
+ 
+@@ -154,7 +154,7 @@
+ 
+ 	void __delitem__(SIP_PYSLICE);
+ %MethodCode
+-		int len, start, stop, step, slicelength;
++		Py_ssize_t len, start, stop, step, slicelength;
+ 
+ 		len = sipCpp -> count();
+ 
+@@ -182,7 +182,7 @@
+ 
+ 	QStringList operator[](SIP_PYSLICE);
+ %MethodCode
+-		int len, start, stop, step, slicelength;
++		Py_ssize_t len, start, stop, step, slicelength;
+ 
+ 		len = sipCpp -> count();
+ 
+diff -uNr PyQt-x11-gpl-3.16/sip.orig/qt/qstring.sip PyQt-x11-gpl-3.16/sip/qt/qstring.sip
+--- PyQt-x11-gpl-3.16/sip.orig/qt/qstring.sip	2006-03-25 01:09:08.000000000 +0100
++++ PyQt-x11-gpl-3.16/sip/qt/qstring.sip	2006-10-07 09:52:07.000000000 +0200
+@@ -765,7 +765,7 @@
+ 
+ 	QString operator[](SIP_PYSLICE) const;
+ %MethodCode
+-		int len, start, stop, step, slicelength;
++		Py_ssize_t len, start, stop, step, slicelength;
+ 
+ 		len = sipCpp -> length();
+ 
