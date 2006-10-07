@@ -5,11 +5,12 @@ Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
 Version:	3.16
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.riverbankcomputing.com/Downloads/PyQt3/GPL/PyQt-x11-gpl-%{version}.tar.gz
 # Source0-md5:	5f7a32a15bf8afe17c0d0a0cc46de690
+Patch0:		%{name}-64bit.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
@@ -71,6 +72,7 @@ Przyk³adowy kod demonstruj±cy jak u¿ywaæ PyQt.
 
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
+%patch0 -p1
 
 %build
 export QMAKESPEC="%{_datadir}/qt/mkspecs/default"
