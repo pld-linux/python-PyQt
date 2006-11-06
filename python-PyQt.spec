@@ -1,16 +1,17 @@
+# TODO: check status of 64bit.patch (now is rejected).
 %define		module	PyQt
 %define		sipver	2:4.4.5
 Summary:	Python bindings for the Qt toolkit
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
-Version:	3.16
-Release:	2
+Version:	3.17
+Release:	0.1
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.riverbankcomputing.com/Downloads/PyQt3/GPL/PyQt-x11-gpl-%{version}.tar.gz
-# Source0-md5:	5f7a32a15bf8afe17c0d0a0cc46de690
-Patch0:		%{name}-64bit.patch
+# Source0-md5:	dd0ecb6258215cd8e47e6de1c37a6da2
+# Patch0:		%{name}-64bit.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
@@ -72,7 +73,7 @@ Przyk³adowy kod demonstruj±cy jak u¿ywaæ PyQt.
 
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
-%patch0 -p1
+#%%patch0 -p1
 
 %build
 export QMAKESPEC="%{_datadir}/qt/mkspecs/default"
