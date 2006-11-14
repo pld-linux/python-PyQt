@@ -1,29 +1,31 @@
+# TODO: check status of 64bit.patch (now is rejected).
 %define		module	PyQt
-%define		sipver	2:4.3
-
+%define		sipver	2:4.5
 Summary:	Python bindings for the Qt toolkit
-Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
+Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
-Version:	3.15.1
+Version:	3.17
 Release:	1
 License:	GPL v2
 Group:		Libraries/Python
-Source0:	http://www.river-bank.demon.co.uk/download/PyQt/PyQt-x11-gpl-%{version}.tar.gz
-# Source0-md5:	835d49f219b3c0b7f60bf6b2b47c5320
-# Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyQt/PyQt-x11-gpl-snapshot-%{_snap}.tar.gz
+Source0:	http://www.riverbankcomputing.com/Downloads/PyQt3/GPL/PyQt-x11-gpl-%{version}.tar.gz
+# Source0-md5:	dd0ecb6258215cd8e47e6de1c37a6da2
+# Patch0:		%{name}-64bit.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
+BuildRequires:	python-sip-devel >= %{sipver}
+BuildRequires:	qmake
 BuildRequires:	qscintilla-devel >= 1:1.5
 BuildRequires:	qt-designer-libs >= 3.3.0
 BuildRequires:	qt-devel >= 3.3.0
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip >= %{sipver}
+BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-libs
 Requires:	OpenGL
+Requires:	python-sip >= %{sipver}
 Requires:	qscintilla >= 1:1.5
-Requires:	sip >= %{sipver}
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -37,17 +39,17 @@ qtnetwork, qtsql, qttable, qtui and qtxml, and contains 300 classes
 and over 5,750 functions and methods.
 
 %description -l pl
-PyQT to zbiór dowi±zañ do Qt dla Pythona. Dowi±zania zosta³y
+PyQt to zbiór dowi±zañ do Qt dla Pythona. Dowi±zania zosta³y
 zaimplementowane jako modu³y Pythona: qt, qtcanvas, qtext, qtgl,
-qtnetwork, qtsql, qttable, qtui i qtxml - zawieraj± one 300 klas
-i ponad 5 750 funkcji i metod.
+qtnetwork, qtsql, qttable, qtui i qtxml - zawieraj± one 300 klas i
+ponad 5 750 funkcji i metod.
 
 %package devel
 Summary:	Files needed to build other bindings based on Qt
 Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	sip >= %{sipver}
+Requires:	python-sip-devel >= %{sipver}
 
 %description devel
 Files needed to build other bindings for C++ classes that inherit from
@@ -59,7 +61,7 @@ dziedzicz±cych z dowolnej klasy Qt (np. KDE lub w³asnych).
 
 %package examples
 Summary:	Examples for PyQt
-Summary(pl):	Przyklady do PyQt
+Summary(pl):	Przyk³ady do PyQt
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 
@@ -67,37 +69,39 @@ Requires:	%{name} = %{version}-%{release}
 Examples code demonstrating how to use the Python bindings for Qt.
 
 %description examples -l pl
-Przykladowy kod demonstruj±cy jak u¿ywaæ PyQT.
+Przyk³adowy kod demonstruj±cy jak u¿ywaæ PyQt.
 
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
+#%%patch0 -p1
 
 %build
+export QMAKESPEC="%{_datadir}/qt/mkspecs/default"
 echo 'yes' | python configure.py \
 	-c -j 3 \
 	-b %{_bindir} \
+	-d %{py_sitedir} \
 	-n %{_includedir}/qt \
 	-o %{_libdir} \
-	-d %{py_sitedir} \
+	-q %{_prefix} \
 	-v %{_sipfilesdir}
 
-%{__make} \
-	CXX="%{__cxx}" \
-	CXXFLAGS="%{rpmcflags} -fPIC -pipe -w -D_REENTRANT" \
-	LINK="%{__cxx}"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_examplesdir}/python/%{module},%{_sipfilesdir}}
+install -d $RPM_BUILD_ROOT{%{_examplesdir}/%{name}-%{version},%{_sipfilesdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
-cp -R examples3/* $RPM_BUILD_ROOT%{_examplesdir}/python/%{module}
+cp -R examples3/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 cp -R sip/* $RPM_BUILD_ROOT%{_sipfilesdir}
+
+%py_postclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -117,4 +121,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files examples
 %defattr(644,root,root,755)
-%{_examplesdir}/python/%{module}
+%{_examplesdir}/*
