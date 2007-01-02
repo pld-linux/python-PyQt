@@ -6,7 +6,7 @@ Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
 Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
 Version:	3.17
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.riverbankcomputing.com/Downloads/PyQt3/GPL/PyQt-x11-gpl-%{version}.tar.gz
@@ -25,7 +25,7 @@ BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-libs
 Requires:	OpenGL
 Requires:	python-sip >= %{sipver}
-Requires:	qscintilla >= 1:1.5
+Requires:	qscintilla >= 1:1.7.1
 Obsoletes:	%{module}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
