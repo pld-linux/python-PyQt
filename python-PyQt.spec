@@ -2,8 +2,8 @@
 %define		module	PyQt
 %define		sipver	2:4.5
 Summary:	Python bindings for the Qt toolkit
-Summary(ko):	QtÀÇ ÆÄÀÌ½ã ¸ðµâ
-Summary(pl):	Dowi±zania do toolkitu Qt dla Pythona
+Summary(ko.UTF-8):   Qtì˜ íŒŒì´ì¬ ëª¨ë“ˆ
+Summary(pl.UTF-8):   DowiÄ…zania do toolkitu Qt dla Pythona
 Name:		python-%{module}
 Version:	3.17
 Release:	2
@@ -38,15 +38,15 @@ implemented as a set of Python modules: qt, qtcanvas, qtext, qtgl,
 qtnetwork, qtsql, qttable, qtui and qtxml, and contains 300 classes
 and over 5,750 functions and methods.
 
-%description -l pl
-PyQt to zbiór dowi±zañ do Qt dla Pythona. Dowi±zania zosta³y
-zaimplementowane jako modu³y Pythona: qt, qtcanvas, qtext, qtgl,
-qtnetwork, qtsql, qttable, qtui i qtxml - zawieraj± one 300 klas i
+%description -l pl.UTF-8
+PyQt to zbiÃ³r dowiÄ…zaÅ„ do Qt dla Pythona. DowiÄ…zania zostaÅ‚y
+zaimplementowane jako moduÅ‚y Pythona: qt, qtcanvas, qtext, qtgl,
+qtnetwork, qtsql, qttable, qtui i qtxml - zawierajÄ… one 300 klas i
 ponad 5 750 funkcji i metod.
 
 %package devel
 Summary:	Files needed to build other bindings based on Qt
-Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na Qt
+Summary(pl.UTF-8):   Pliki potrzebne do budowania innych dowiÄ…zaÅ„ bazowanych na Qt
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 Requires:	python-sip-devel >= %{sipver}
@@ -55,21 +55,21 @@ Requires:	python-sip-devel >= %{sipver}
 Files needed to build other bindings for C++ classes that inherit from
 any of the Qt classes (e.g. KDE or your own).
 
-%description devel -l pl
-Pliki potrzebne do budowania innych dowi±zañ do klas C++
-dziedzicz±cych z dowolnej klasy Qt (np. KDE lub w³asnych).
+%description devel -l pl.UTF-8
+Pliki potrzebne do budowania innych dowiÄ…zaÅ„ do klas C++
+dziedziczÄ…cych z dowolnej klasy Qt (np. KDE lub wÅ‚asnych).
 
 %package examples
 Summary:	Examples for PyQt
-Summary(pl):	Przyk³ady do PyQt
+Summary(pl.UTF-8):   PrzykÅ‚ady do PyQt
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 
 %description examples
 Examples code demonstrating how to use the Python bindings for Qt.
 
-%description examples -l pl
-Przyk³adowy kod demonstruj±cy jak u¿ywaæ PyQt.
+%description examples -l pl.UTF-8
+PrzykÅ‚adowy kod demonstrujÄ…cy jak uÅ¼ywaÄ‡ PyQt.
 
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
