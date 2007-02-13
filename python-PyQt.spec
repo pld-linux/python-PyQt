@@ -2,8 +2,8 @@
 %define		module	PyQt
 %define		sipver	2:4.5
 Summary:	Python bindings for the Qt toolkit
-Summary(ko.UTF-8):   Qt의 파이썬 모듈
-Summary(pl.UTF-8):   Dowiązania do toolkitu Qt dla Pythona
+Summary(ko.UTF-8):	Qt의 파이썬 모듈
+Summary(pl.UTF-8):	Dowiązania do toolkitu Qt dla Pythona
 Name:		python-%{module}
 Version:	3.17
 Release:	2
@@ -46,7 +46,7 @@ ponad 5 750 funkcji i metod.
 
 %package devel
 Summary:	Files needed to build other bindings based on Qt
-Summary(pl.UTF-8):   Pliki potrzebne do budowania innych dowiązań bazowanych na Qt
+Summary(pl.UTF-8):	Pliki potrzebne do budowania innych dowiązań bazowanych na Qt
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 Requires:	python-sip-devel >= %{sipver}
@@ -61,7 +61,7 @@ dziedziczących z dowolnej klasy Qt (np. KDE lub własnych).
 
 %package examples
 Summary:	Examples for PyQt
-Summary(pl.UTF-8):   Przykłady do PyQt
+Summary(pl.UTF-8):	Przykłady do PyQt
 Group:		Libraries/Python
 Requires:	%{name} = %{version}-%{release}
 
