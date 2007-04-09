@@ -19,7 +19,7 @@ BuildRequires:	python-sip-devel >= %{sipver}
 BuildRequires:	qmake
 BuildRequires:	qscintilla-devel >= 1:1.5
 BuildRequires:	qt-designer-libs >= 3.3.0
-BuildRequires:	qt-devel >= 3.3.0
+BuildRequires:	qt-devel >= 6:3.3.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-libs
