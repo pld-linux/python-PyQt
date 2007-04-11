@@ -1,16 +1,16 @@
 # TODO: check status of 64bit.patch (now is rejected).
 %define		module	PyQt
-%define		sipver	2:4.5
+%define		sipver	2:4.6
 Summary:	Python bindings for the Qt toolkit
 Summary(ko.UTF-8):	Qt의 파이썬 모듈
 Summary(pl.UTF-8):	Dowiązania do toolkitu Qt dla Pythona
 Name:		python-%{module}
-Version:	3.17
-Release:	2
+Version:	3.17.1
+Release:	1
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.riverbankcomputing.com/Downloads/PyQt3/GPL/PyQt-x11-gpl-%{version}.tar.gz
-# Source0-md5:	dd0ecb6258215cd8e47e6de1c37a6da2
+# Source0-md5:	f04fa60df7c09e3c0a2006982c2c4cf5
 # Patch0:		%{name}-64bit.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
