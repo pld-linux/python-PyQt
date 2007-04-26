@@ -5,12 +5,12 @@ Summary:	Python bindings for the Qt toolkit
 Summary(ko.UTF-8):	Qt의 파이썬 모듈
 Summary(pl.UTF-8):	Dowiązania do toolkitu Qt dla Pythona
 Name:		python-%{module}
-Version:	3.17.1
+Version:	3.17.2
 Release:	1
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.riverbankcomputing.com/Downloads/PyQt3/GPL/PyQt-x11-gpl-%{version}.tar.gz
-# Source0-md5:	f04fa60df7c09e3c0a2006982c2c4cf5
+# Source0-md5:	1ed22e01dc1d442809c4ce77fe8aba85
 # Patch0:		%{name}-64bit.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
