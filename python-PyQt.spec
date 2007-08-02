@@ -6,7 +6,7 @@ Summary(ko.UTF-8):	Qt의 파이썬 모듈
 Summary(pl.UTF-8):	Dowiązania do toolkitu Qt dla Pythona
 Name:		python-%{module}
 Version:	3.17.3
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.riverbankcomputing.com/Downloads/PyQt3/GPL/PyQt-x11-gpl-%{version}.tar.gz
