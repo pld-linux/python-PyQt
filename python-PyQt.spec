@@ -75,10 +75,6 @@ Przykładowy kod demonstrujący jak używać PyQt.
 %setup -q -n %{module}-x11-gpl-%{version}
 #%%patch0 -p1
 
-%if "%{_lib}" == "lib64"
-sed -i -e 's#"lib"#"lib64"#g' configure.py
-%endif
-
 %build
 export QMAKESPEC="%{_datadir}/qt/mkspecs/default"
 echo 'yes' | python configure.py \
