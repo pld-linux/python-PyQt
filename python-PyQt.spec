@@ -1,4 +1,3 @@
-# TODO: check status of 64bit.patch (now is rejected).
 %define		module	PyQt
 %define		sipver	2:4.8
 Summary:	Python bindings for the Qt toolkit
@@ -6,18 +5,18 @@ Summary(ko.UTF-8):	Qt의 파이썬 모듈
 Summary(pl.UTF-8):	Dowiązania do toolkitu Qt dla Pythona
 Name:		python-%{module}
 Version:	3.18.1
-Release:	4
+Release:	5
 License:	GPL v2
 Group:		Libraries/Python
 Source0:	http://www.riverbankcomputing.co.uk/static/Downloads/PyQt3/PyQt-x11-gpl-%{version}.tar.gz
 # Source0-md5:	f1d120495d1aaf393819e988c0a7bb7e
-# Patch0:		%{name}-64bit.patch
 URL:		http://www.riverbankcomputing.co.uk/pyqt/index.php
 BuildRequires:	OpenGL-devel
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	python-sip-devel >= %{sipver}
 BuildRequires:	qmake
 BuildRequires:	qscintilla-devel >= 1:1.5
+# for -lqui
 BuildRequires:	qt-designer-libs >= 3.3.0
 BuildRequires:	qt-devel >= 6:3.3.0
 BuildRequires:	rpm-pythonprov
@@ -26,10 +25,9 @@ BuildRequires:	rpmbuild(macros) >= 1.219
 Requires:	OpenGL
 Requires:	python-sip >= %{sipver}
 Requires:	qscintilla >= 1:1.7.1
-Obsoletes:	%{module}
+Obsoletes:	PyQt
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_noautoreqdep	libGL.so.1 libGLU.so.1
 %define		_sipfilesdir	%{_datadir}/sip
 
 %description
@@ -59,6 +57,18 @@ any of the Qt classes (e.g. KDE or your own).
 Pliki potrzebne do budowania innych dowiązań do klas C++
 dziedziczących z dowolnej klasy Qt (np. KDE lub własnych).
 
+%package devel-tools
+Summary:	PyQt development tools
+Summary(pl.UTF-8):	Narzędzia programistyczne PyQt
+Group:		X11/Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description devel-tools
+PyQt development tools: pylupdate, pyuic.
+
+%description devel-tools -l pl.UTF-8
+Narzędzia programistyczne PyQt: pylupdate, pyuic.
+
 %package examples
 Summary:	Examples for PyQt
 Summary(pl.UTF-8):	Przykłady do PyQt
@@ -73,7 +83,6 @@ Przykładowy kod demonstrujący jak używać PyQt.
 
 %prep
 %setup -q -n %{module}-x11-gpl-%{version}
-#%%patch0 -p1
 
 %build
 export QMAKESPEC="%{_datadir}/qt/mkspecs/default"
@@ -95,12 +104,11 @@ install -d $RPM_BUILD_ROOT{%{_examplesdir}/%{name}-%{version},%{_sipfilesdir}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%py_comp $RPM_BUILD_ROOT%{py_sitedir}
-%py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 cp -R examples3/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-
 cp -R sip/* $RPM_BUILD_ROOT%{_sipfilesdir}
 
+%py_comp $RPM_BUILD_ROOT%{py_sitedir}
+%py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 %py_postclean
 
 %clean
@@ -109,16 +117,37 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README THANKS doc/PyQt.html
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{py_sitedir}/*.so*
-%{py_sitedir}/*.py[co]
+%attr(755,root,root) %{py_sitedir}/qt.so
+%attr(755,root,root) %{py_sitedir}/qtcanvas.so
+%attr(755,root,root) %{py_sitedir}/qtext.so
+%attr(755,root,root) %{py_sitedir}/qtgl.so
+%attr(755,root,root) %{py_sitedir}/qtnetwork.so
+%attr(755,root,root) %{py_sitedir}/qtsql.so
+%attr(755,root,root) %{py_sitedir}/qttable.so
+%attr(755,root,root) %{py_sitedir}/qtui.so
+%attr(755,root,root) %{py_sitedir}/qtxml.so
+%{py_sitedir}/pyqtconfig.py[co]
 
 %files devel
 %defattr(644,root,root,755)
-%{_sipfilesdir}/pyqt*.sip
-%dir %{_sipfilesdir}/qt*
-%{_sipfilesdir}/qt*/*.sip
+%{_sipfilesdir}/pyqt-gpl.sip
+%{_sipfilesdir}/qt
+%{_sipfilesdir}/qtaxcontainer
+%{_sipfilesdir}/qtcanvas
+%{_sipfilesdir}/qtext
+%{_sipfilesdir}/qtgl
+%{_sipfilesdir}/qtnetwork
+%{_sipfilesdir}/qtpe
+%{_sipfilesdir}/qtsql
+%{_sipfilesdir}/qttable
+%{_sipfilesdir}/qtui
+%{_sipfilesdir}/qtxml
+
+%files devel-tools
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/pylupdate
+%attr(755,root,root) %{_bindir}/pyuic
 
 %files examples
 %defattr(644,root,root,755)
-%{_examplesdir}/*
+%{_examplesdir}/%{name}-%{version}
